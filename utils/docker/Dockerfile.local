@@ -1,0 +1,27 @@
+# To run this file execute:
+# docker build -f <Path to this file> <Path to Darkvim basedir> -t Darkvim:local
+
+FROM ubuntu:latest
+
+# Set environment correctly
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PATH="/root/.local/bin:/root/.cargo/bin:/root/.npm-global/bin${PATH}"
+
+# Copy in local directory
+COPY --chown=root:root . /DarkVim
+
+# Install dependencies and DarkVim
+RUN apt update && \
+  apt -y install sudo curl build-essential git fzf python3-dev python3-pip cargo && \
+  curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
+  apt update && \
+  apt -y install nodejs && \
+  apt clean && rm -rf /var/lib/apt/lists/* /tmp/* && \
+  /DarkVim/utils/installer/install-neovim-from-release && \
+  /DarkVim/utils/installer/install.sh --local --no-install-dependencies
+
+# Setup DARK to run on startup
+ENTRYPOINT ["/bin/bash"]
+CMD ["dark"]
+
+# vim: ft=dockerfile:
