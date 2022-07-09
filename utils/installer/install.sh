@@ -2,7 +2,7 @@
 set -eo pipefail
 
 #Set branch to master unless specified by the user
-declare LV_BRANCH="${LV_BRANCH:-"master"}"
+declare LV_BRANCH="${LV_BRANCH:-"main"}"
 declare -r LV_REMOTE="${LV_REMOTE:-pact0/DarkVim.git}"
 declare -r INSTALL_PREFIX="${INSTALL_PREFIX:-"$HOME/.local"}"
 
