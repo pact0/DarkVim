@@ -58,11 +58,11 @@ local core_plugins = {
     disable = not dark.builtin.telescope.active,
   },
 
-  {
-    "nvim-telescope/telescope-fzy-native.nvim",
-    run = "make",
-    event = "BufRead",
-  },
+  --{
+  --  "nvim-telescope/telescope-fzy-native.nvim",
+  --  run = "make",
+  --  event = "BufRead",
+  --},
 
   -- Install nvim-cmp, and buffer source as a dependency
   {
