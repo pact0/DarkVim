@@ -10,6 +10,8 @@ function M.config()
   }
 
   local ok, actions = pcall(require, "telescope.actions")
+  local trouble = require("trouble.providers.telescope")
+
   if not ok then
     return
   end
@@ -56,11 +58,13 @@ function M.config()
           ["<C-k>"] = actions.cycle_history_prev,
           ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
           ["<CR>"] = actions.select_default,
+          ["<c-t>"] = trouble.open_with_trouble
         },
         n = {
           ["<C-n>"] = actions.move_selection_next,
           ["<C-p>"] = actions.move_selection_previous,
           ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+          ["<c-t>"] = trouble.open_with_trouble
         },
       },
       file_ignore_patterns = {},
@@ -87,6 +91,10 @@ function M.config()
         override_file_sorter = true, -- override the file sorter
         case_mode = "smart_case", -- or "ignore_case" or "respect_case"
       },
+      fzy_native = {
+        override_generic_sorter = false,
+        override_file_sorter = true,
+      }
     },
   })
 end
@@ -95,6 +103,7 @@ function M.setup()
   local previewers = require "telescope.previewers"
   local sorters = require "telescope.sorters"
   local actions = require "telescope.actions"
+  local trouble = require("trouble.providers.telescope")
 
   dark.builtin.telescope = vim.tbl_extend("keep", {
     file_previewer = previewers.vim_buffer_cat.new,
@@ -112,11 +121,13 @@ function M.setup()
         ["<C-k>"] = actions.cycle_history_prev,
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
         ["<CR>"] = actions.select_default + actions.center,
+        ["<c-t>"] = trouble.open_with_trouble
       },
       n = {
         ["<C-n>"] = actions.move_selection_next,
         ["<C-p>"] = actions.move_selection_previous,
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+        ["<c-t>"] = trouble.open_with_trouble
       },
     },
   }, dark.builtin.telescope)
@@ -143,6 +154,12 @@ function M.setup()
   if dark.builtin.telescope.extensions and dark.builtin.telescope.extensions.fzf then
     pcall(function()
       require("telescope").load_extension "fzf"
+    end)
+  end
+
+  if dark.builtin.telescope.extensions and dark.builtin.telescope.extensions.fzy_native then
+    pcall(function()
+      require('telescope').load_extension "fzy_native"
     end)
   end
 end

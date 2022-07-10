@@ -78,6 +78,7 @@ M.config = function()
     -- see https://neovim.io/doc/user/map.html#:map-cmd
     vmappings = {
       ["/"] = { "<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", "Comment" },
+      ["a"] = { "<CMD>EasyAlign", "EasyAlign Selection" },
     },
     mappings = {
       [";"] = { "<cmd>Alpha<CR>", "Dashboard" },
@@ -152,6 +153,20 @@ M.config = function()
           "<cmd>Gitsigns diffthis HEAD<cr>",
           "Git Diff",
         },
+        D = {
+          name = "Diffing",
+          c = { "<cmd>DiffviewOpen HEAD~1<CR>", "Diff with previous commit" },
+          -- d = { "<cmd>Git diff %<CR>", "current file with current branch" },
+          x = { "<cmd>DiffviewClose<CR>", "Close diffview" },
+          m = {
+            "<cmd>DiffviewOpen origin/main<CR>",
+            "Diff current file with main branch"
+          }
+        },
+        q = {
+          '<cmd>lua do vim.cmd("copen") require"gitsigns".setqflist("all") end <CR>',
+          "Add hunks to qf list"
+        }
       },
       l = {
         name = "LSP",
@@ -178,6 +193,7 @@ M.config = function()
         },
         q = { vim.diagnostic.setloclist, "Quickfix" },
         r = { vim.lsp.buf.rename, "Rename" },
+        R = { "<cmd>Telescope  lsp_references<CR>", "Browse LSP references" },
         s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
         S = {
           "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
@@ -255,10 +271,23 @@ M.config = function()
           "<cmd>lua require('telescope.builtin.internal').colorscheme({enable_preview = true})<cr>",
           "Colorscheme with Preview",
         },
+        P = {
+          "<cmd>Telescope projects<CR>", "Browse projects"
+        }
       },
       T = {
         name = "Treesitter",
         i = { ":TSConfigInfo<cr>", "Info" },
+      },
+      t = {
+        name = "Trouble",
+        t = { "<cmd>TroubleToggle<cr>", "trouble" },
+        w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace" },
+        d = { "<cmd>TroubleToggle document_diagnostics<cr>", "document" },
+        q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
+        l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
+        r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
+        T = { "<cmd>TodoTrouble<CR>", "TODO trouble" },
       },
     },
   }

@@ -101,6 +101,7 @@ return {
       ["gd"] = { vim.lsp.buf.definition, "Goto Definition" },
       ["gD"] = { vim.lsp.buf.declaration, "Goto declaration" },
       ["gr"] = { vim.lsp.buf.references, "Goto references" },
+      ["gR"] = { vim.lsp.buf.rename, "Rename" },
       ["gI"] = { vim.lsp.buf.implementation, "Goto Implementation" },
       ["gs"] = { vim.lsp.buf.signature_help, "show signature help" },
       ["gp"] = {

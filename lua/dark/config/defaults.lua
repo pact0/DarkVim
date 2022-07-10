@@ -39,4 +39,7 @@ return {
     -- currently disabled due to instabilities
     override_notify = false,
   },
+
+  use_bufferline = false,
+  use_matchup = true,
 }

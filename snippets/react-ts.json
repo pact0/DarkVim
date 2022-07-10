@@ -1,0 +1,12 @@
+{
+  "reactStatelessProps": {
+    "prefix": "rfcp",
+    "body": "import { PropTypes } from 'react'\n\nconst ${TM_FILENAME_BASE} = props => {\n\treturn (\n\t\t<div>\n\t\t\t\n\t\t</div>\n\t)\n}\n\n${1}.propTypes = {\n\t$0\n}\n\nexport default ${1}",
+    "description": "Creates a React function component with PropTypes"
+  },
+  "reactTest": {
+    "prefix": "tty",
+    "body": "import { PropTypes } from 'react'\n\nconst ${TM_FILENAME_BASE} = props => {\n\treturn (\n\t\t<div>\n\t\t\t\n\t\t</div>\n\t)\n}\n\n${1}.propTypes = {\n\t$0\n}\n\nexport default ${1}",
+    "description": "TTY"
+  }
+}

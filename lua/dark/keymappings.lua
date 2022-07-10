@@ -46,6 +46,7 @@ local defaults = {
     ["<A-Down>"] = "<C-\\><C-N><C-w>j",
     ["<A-Left>"] = "<C-\\><C-N><C-w>h",
     ["<A-Right>"] = "<C-\\><C-N><C-w>l",
+    ["<C-k>"] = '<cmd>lua vim.lsp.buf.signature_help()<CR>'
   },
 
   normal_mode = {
@@ -73,6 +74,9 @@ local defaults = {
     ["]q"] = ":cnext<CR>",
     ["[q"] = ":cprev<CR>",
     ["<C-q>"] = ":call QuickFixToggle()<CR>",
+    -- Trouble
+    ["]t"] = "<cmd>lua require('trouble').next({skip_groups = true, jump = true})<CR>",
+    ["[t"] = "<cmd>lua require('trouble').previous({skip_groups = true, jump = true})<CR>",
   },
 
   term_mode = {
@@ -91,6 +95,7 @@ local defaults = {
     -- ["p"] = '"0p',
     -- ["P"] = '"0P',
   },
+
 
   visual_block_mode = {
     -- Move selected line / block of text in visual mode

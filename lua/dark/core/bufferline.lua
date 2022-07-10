@@ -38,7 +38,7 @@ end
 
 M.config = function()
   dark.builtin.bufferline = {
-    active = true,
+    active = dark.use_bufferline,
     on_config_done = nil,
     keymap = {
       normal_mode = {},

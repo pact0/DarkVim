@@ -20,6 +20,7 @@ end
 local function feedkeys(key, mode)
   vim.fn.feedkeys(T(key), mode)
 end
+
 M.methods.feedkeys = feedkeys
 
 ---checks if emmet_ls is available and active in the buffer
@@ -99,7 +100,7 @@ local function jumpable(dir)
       local n_next = node.next
       local next_pos = n_next and n_next.mark:pos_begin()
       local candidate = n_next ~= snippet and next_pos and (pos[1] < next_pos[1])
-        or (pos[1] == next_pos[1] and pos[2] < next_pos[2])
+          or (pos[1] == next_pos[1] and pos[2] < next_pos[2])
 
       -- Past unmarked exit node, exit early
       if n_next == nil or n_next == snippet.next then
@@ -143,6 +144,7 @@ local function jumpable(dir)
     return inside_snippet() and seek_luasnip_cursor_node() and luasnip.jumpable()
   end
 end
+
 M.methods.jumpable = jumpable
 
 M.config = function()
@@ -226,7 +228,7 @@ M.config = function()
         end
         vim_item.menu = dark.builtin.cmp.formatting.source_names[entry.source.name]
         vim_item.dup = dark.builtin.cmp.formatting.duplicates[entry.source.name]
-          or dark.builtin.cmp.formatting.duplicates_default
+            or dark.builtin.cmp.formatting.duplicates_default
         return vim_item
       end,
     },
